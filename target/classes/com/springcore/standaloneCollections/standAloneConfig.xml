@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+        
+    <!-- Stand alone collections(sac) -can be used again in any bean just by its id
+    	 stand alone collections also allow us to choose the datatype of list (or map or set) we are making,
+    	 i.e. it allow us to choose the implementation class of the list interface for eg-->
+    	 
+	
+	<!-- you need to use util namespace and util schemalocation for creating SAC-->
+	<util:list list-class="java.util.Vector" id="myBestFriends">
+		<value>Aman</value>
+		<value>Raman</value>
+		<value>Ankita</value>
+		<value>Aadhya</value>
+	</util:list>
+	
+	<util:map map-class="java.util.TreeMap" id="myAllFees">
+		<entry key="Spring Course" value="8000"/>
+		<entry key="Android Course" value="5000"/>
+		<entry key="Machine Learning" value="10000"/>
+	</util:map>
+	
+	<util:properties id="allDbInfo"> <!-- no need to specify class b/c properties is itself a Class not an Interface-->
+		<prop key="driver">com.mysql.jdbc.Driver</prop>
+		<prop key="username">akshita</prop>
+		<prop key="password">123456</prop>
+	</util:properties>
+	
+	
+	
+	<!-- Just as you give the ref of other bean, similarly you can give ref of the id of standAloneCollection--> 
+	<bean class="com.springcore.standaloneCollections.Person" name="person1">
+		<!-- METHOD 1-->
+		<property name="friends">
+			<ref bean="myBestFriends"/>
+		</property>
+		<!-- METHOD 2-->
+		<property name="feeStructure" ref="myAllFees"/>
+		<property name="dbPro" ref="allDbInfo"/>
+ 	</bean>
+ 		<!-- METHOD 3-->
+ 	<bean class="com.springcore.standaloneCollections.Person" name="person2" 
+ 			p:friends-ref="myBestFriends" 
+ 			p:feeStructure-ref="myAllFees"
+ 			p:dbPro-ref="allDbInfo"
+ 		/>
+		
+</beans>

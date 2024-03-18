@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        
+        <!-- Here in the below examples of list , set and Map we are not able to choose the type of our list,
+       		 i.e. we are not able to choose hte implementation class of List interface, that wheter we want to make 
+       		 LinkedList, ArrayList, or any other list.
+       		 
+       		 Also here we are making local list that is availabe for single property and bean.
+       		 
+       		 To solve above to problems, we can use StandAlone Collections-->
+        <bean class="com.springcore.collections.Emp" name="emp1">
+			<property  name="empId" value="22344"/>
+			
+			<property name="phones">
+				<list>
+					<value>234455692</value>
+					<value>987654</value>
+					<value>98766789</value>
+					<null/>
+				</list>
+			</property>
+			
+			<property name="addresses">
+				<set>
+					<value>Dehli</value>
+					<value>Mohali</value>
+					<value>Kolkata</value>
+				</set>
+			</property>
+			
+			<property name="courses">
+				<map>
+					<entry key="Java" value="2months"/>
+					<entry key="Python" value="1.2months"/>
+				</map>
+			</property>
+			
+			<property name="about">
+				<props>
+					<prop key="Job Profile">SDE</prop>
+					<prop key="Experience">5 years</prop>
+				</props>
+			</property>
+		</bean>
+		
+</beans>
